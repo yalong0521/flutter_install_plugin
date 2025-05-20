@@ -8,7 +8,6 @@ import android.os.Build
 import android.os.Environment
 import android.provider.Settings
 import android.util.Log
-import androidx.annotation.NonNull
 import androidx.core.content.FileProvider
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
@@ -30,13 +29,13 @@ class InstallPlugin : FlutterPlugin, MethodChannel.MethodCallHandler, ActivityAw
     private var apkFilePath = ""
     private var hasPermission = false
 
-    override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+    override fun onAttachedToEngine( flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         context = flutterPluginBinding.applicationContext
         channel = MethodChannel(flutterPluginBinding.binaryMessenger, "install_plugin")
         channel.setMethodCallHandler(this)
     }
 
-    override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+    override fun onDetachedFromEngine( binding: FlutterPlugin.FlutterPluginBinding) {
         context = null
         channel.setMethodCallHandler(null)
         mResult = null
@@ -65,7 +64,7 @@ class InstallPlugin : FlutterPlugin, MethodChannel.MethodCallHandler, ActivityAw
         activityReference.clear()
     }
 
-    override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: MethodChannel.Result) {
+    override fun onMethodCall( call: MethodCall,  result: MethodChannel.Result) {
         mResult = result
         when (call.method) {
             "installApk" -> {
